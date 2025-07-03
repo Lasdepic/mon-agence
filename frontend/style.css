@@ -4,23 +4,29 @@ body, html {
     height: 100%;
 }
 
-header h1 {
+h1 {
+    color: rgb(0, 64, 255);
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
-    color: rgb(0, 94, 255);
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 34px;
 }
 
 header {
-    background-color: #00b7ff;
-    color: #fff;
-    height: 100%;
-    width: 100%;
+    border-bottom: 2px solid rgb(1, 35, 137);
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    list-style: none;
     display: flex;
 }
 
-body {
+nav a {
+    text-decoration: none;
 }
 
-
+nav li {
+    list-style: none;
+}
