@@ -1,22 +1,37 @@
 version: "3.8"
-
 services:
   frontend:
-    build:
-      context: ./frontend
-      dockerfile: dockerfile
-    container_name: docker_frontend_2
+    build: ./frontend
     ports:
-      - "81:80"          
+      - "8080:80"
     volumes:
-      - ./frontend:/usr/local/apache2/htdocs/  
+      - ./frontend:/usr/local/apache2/htdocs/
 
   backend:
-    build:
-      context: ./backend
-      dockerfile: dockerfile
-    container_name: docker_backend
-    ports:
-      - "82:80"           
+    build: ./backend
     volumes:
-      - ./backend:/usr/local/apache2/htdocs/    
+      - ./backend:/app
+
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: users_db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: userpass
+    volumes:
+      - db_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: rootpass
+
+volumes:
+  db_data:
+
