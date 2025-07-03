@@ -1,0 +1,20 @@
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: dockerfile
+    container_name: docker_frontend_2
+    ports:
+      - "81:80"          
+    volumes:
+      - ./frontend:/usr/local/apache2/htdocs/  
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: dockerfile
+    container_name: docker_backend
+    ports:
+      - "82:80"           
+    volumes:
+      - ./backend:/usr/local/apache2/htdocs/    
